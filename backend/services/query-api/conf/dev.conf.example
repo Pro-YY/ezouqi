@@ -1,0 +1,7 @@
+LOGO = ''
+DEBUG = True
+
+HOST = '0.0.0.0'
+PORT = 3001
+EXTERNAL_SCHEME = 'https'
+EXTERNAL_SERVER = 'localhost'
