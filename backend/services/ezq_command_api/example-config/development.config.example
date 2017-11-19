@@ -1,0 +1,9 @@
+LOGO = ''
+DEBUG = True
+
+HOST = '0.0.0.0'
+PORT = 3001
+EXTERNAL_SCHEME = 'https'
+EXTERNAL_SERVER = 'localhost'
+
+MQ_CONNECT_URL = 'amqp://guest:guest@localhost:5672/%2F'
