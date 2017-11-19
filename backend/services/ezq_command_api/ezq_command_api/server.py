@@ -39,7 +39,7 @@ async def ignore_500s(request, exception):
     return json(result, ensure_ascii=False, escape_forward_slashes=False)
 
 @app.listener('before_server_start')
-async def mq_init(app, loop):
+async def publisher_init(app, loop):
     await publisher_config(app.config.MQ_CONNECT_URL)
     print('server is about to start...')
 
