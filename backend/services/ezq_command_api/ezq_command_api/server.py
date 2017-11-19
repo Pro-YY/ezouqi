@@ -9,12 +9,8 @@ from ezq_command_api.publisher import config as publisher_config
 app = Sanic(__name__)
 app.config.from_envvar('CONFIG')
 
-@app.route('/api/command/test')
-async def test_route(request):
-    return json({ "hello": "world" })
-
 # mount middlewares
-# middleware only with app, not blueprint specific
+# NOTE: middleware only work with app, not blueprint specific
 @app.middleware('request')
 async def add_x_request_id_middlware(request):
     request.headers['x-request-id'] = str(uuid4())
