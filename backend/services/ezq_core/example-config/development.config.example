@@ -1,0 +1,2 @@
+MQ_CONNECT_URL = 'amqp://guest:guest@localhost:5672/%2F?heartbeat=30'
+DB_CONNECT_URL = 'postgresql://postgres@localhost:5432/example'
