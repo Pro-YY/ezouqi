@@ -7,6 +7,7 @@ import functools
 from ezq_core.config import config
 from ezq_core.database import pool_connect
 from ezq_core.subscriber import start_subscribe
+from ezq_core.publisher import config as publisher_config
 from ezq_core.logger import logger
 
 def on_exit(loop, signame):
@@ -23,6 +24,8 @@ def main():
     loop.create_task(pool_connect(config.DB_CONNECT_URL))
     # rabbitmq subscriber
     loop.create_task(start_subscribe(config.MQ_CONNECT_URL))
+    # rabbitmq publisher
+    loop.create_task(publisher_config(config.MQ_CONNECT_URL))
 
     for signame in ('SIGINT', 'SIGTERM'):
         loop.add_signal_handler(getattr(signal, signame),

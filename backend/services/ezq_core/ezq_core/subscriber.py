@@ -2,17 +2,17 @@ import asyncio
 from aio_pika import connect_robust, IncomingMessage, ExchangeType
 from ujson import loads
 
-from ezq_core.handlers import switch
+from ezq_core.dispatcher import dispatch
 from ezq_core.logger import logger
 
 async def on_message(message: IncomingMessage):
     with message.process():     # auto message.ack()
-        sec = 2
-        print("Before sleep! %s" % sec)
-        await asyncio.sleep(sec) # Represents async I/O operations
-        print("After sleep! %s" % sec)
         body = loads(message.body)
-        await switch(body['command'], body)
+        event = body['event']
+        print('# {} [received] sleep 1 sec...'.format(event))
+        await asyncio.sleep(1) # Represents async I/O operations
+        del body['event']
+        await dispatch(event, body)
 
 async def start_subscribe(url, *args, **kwargs):
     connection = await connect_robust(url)
