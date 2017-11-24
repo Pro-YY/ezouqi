@@ -3,7 +3,7 @@ from sanic.response import json
 from sanic.exceptions import NotFound, ServerError
 from uuid import uuid4
 
-from ezq_command_api.blueprints import rest_v1 as bp_rest_v1
+from ezq_command_api.routes import rest_v1 as routes_rest_v1
 from ezq_command_api.publisher import config as publisher_config
 
 app = Sanic(__name__)
@@ -16,7 +16,7 @@ async def add_x_request_id_middlware(request):
     request.headers['x-request-id'] = str(uuid4())
 
 # mount all blueprints
-app.blueprint(bp_rest_v1, url_prefix='/api/command/rest/v1')
+app.blueprint(routes_rest_v1, url_prefix='/api/command/rest/v1')
 
 # error handlers
 @app.exception(NotFound)
