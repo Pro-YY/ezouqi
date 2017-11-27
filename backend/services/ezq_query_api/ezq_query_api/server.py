@@ -2,7 +2,8 @@ from sanic import Sanic, Blueprint
 from sanic.response import json
 from sanic.exceptions import NotFound, ServerError
 
-from routes import rest_v1
+from ezq_query_api.routes import rest_v1
+from ezq_query_api.database import pool_connect
 
 app = Sanic(__name__)
 app.config.from_envvar('CONFIG')
@@ -27,7 +28,9 @@ async def ignore_500s(request, exception):
     }
     return json(result, ensure_ascii=False, escape_forward_slashes=False)
 
-print(app.config)
+@app.listener('before_server_start')
+async def connect_db(app, loop):
+    await pool_connect(app.config.DB_CONNECT_URL)
 
 app.run(
     host=app.config.HOST,

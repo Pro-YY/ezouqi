@@ -5,3 +5,5 @@ HOST = '0.0.0.0'
 PORT = 3001
 EXTERNAL_SCHEME = 'https'
 EXTERNAL_SERVER = 'localhost'
+
+DB_CONNECT_URL = 'postgresql://localhost:5432/ezq'

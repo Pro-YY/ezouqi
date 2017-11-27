@@ -1,4 +1,5 @@
 aiofiles==0.3.2
+asyncpg==0.13.0
 httptools==0.0.9
 pkg-resources==0.0.0
 sanic==0.6.0
