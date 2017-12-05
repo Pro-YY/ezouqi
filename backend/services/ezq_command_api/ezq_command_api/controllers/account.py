@@ -12,7 +12,6 @@ async def create_account(req, *args, **kwargs):
     return result
 
 async def update_account(req, account_id, *args, **kwargs):
-    print(req.headers['x-request-id'])
     request_json = req.json
     msg = {
         'event': 'UPDATE_ACCOUNT_INIT',

@@ -3,6 +3,6 @@ asyncpg==0.13.0
 httptools==0.0.9
 pkg-resources==0.0.0
 sanic==0.6.0
-ujson==1.35
+uuid==1.30
 uvloop==0.8.1
 websockets==4.0.1

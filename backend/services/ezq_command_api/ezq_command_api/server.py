@@ -13,6 +13,17 @@ app.config.from_envvar('CONFIG')
 # NOTE: middleware only work with app, not blueprint specific
 @app.middleware('request')
 async def add_x_request_id_middlware(request):
+    print(request.headers)
+    print(request.headers['content-type'])
+    # verify headers
+    if request.headers['content-type'] != 'application/json':
+        result = {
+            'code': -1,
+            'message': 'missing json header',
+            'http_status': 400
+        }
+        return json(result, ensure_ascii=False, escape_forward_slashes=False)
+    # add request id
     request.headers['x-request-id'] = str(uuid4())
 
 # mount all blueprints

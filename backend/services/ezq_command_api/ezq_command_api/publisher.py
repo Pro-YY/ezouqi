@@ -16,7 +16,6 @@ async def publish(message, *args, **kwargs):
             exchange='ezq_exchange', exchange_type='direct')
     channel.basic_publish(
             exchange='ezq_exchange',
-            routing_key='ezq_core_queue_key',
-            body=dumps(message,
-                ensure_ascii=False, escape_forward_slashes=False))
+            routing_key='ezq_core_queue',
+            body=dumps(message))
     connection.close()

@@ -35,7 +35,11 @@ async def _set_columns_by_pkid(table, pkid, change,
     return await execute(sc, *sa)
 
 async def update_account(params, *args, **kwargs):
+    print(params)
     account_id = params['account_id']
+    if params['request_json'] is None:
+        print('request json is None')
+        return
     d = params['request_json']['data']
     # the fields can be updated
     u = {}
